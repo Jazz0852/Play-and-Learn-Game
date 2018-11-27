@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/SampleScene.unity
+- path: Assets/SimpleTown/DemoScene/SimpleTown_DemoScene.unity
   isLoaded: 1
   isActive: 1
