@@ -10895,7 +10895,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1397804359603268, guid: cdea8359c935f004286db743f97c6e9e, type: 2}
       propertyPath: m_Name
-      value: Liam (1)
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4980956165991820, guid: cdea8359c935f004286db743f97c6e9e, type: 2}
       propertyPath: m_LocalScale.x
@@ -86784,6 +86784,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1397804359603268, guid: cdea8359c935f004286db743f97c6e9e,
     type: 2}
   m_PrefabInternal: {fileID: 39164717}
+--- !u!114 &1748042879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1748042878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270b7221614c28f4eb03717dd86fad94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1748042882
 CapsuleCollider:
   m_ObjectHideFlags: 0
