@@ -64,6 +64,7 @@
     <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\LongClickButton.cs" />
     <Compile Include="Assets\MovebyTouch.cs" />
+    <Compile Include="Assets\MovePlayer.cs" />
     <Compile Include="Assets\Virtual Joystick Pack\Examples\2D Example\Player2DExample.cs" />
     <Compile Include="Assets\Virtual Joystick Pack\Examples\3D Example\Player3DExample.cs" />
     <Compile Include="Assets\Virtual Joystick Pack\Scripts\Base\Joystick.cs" />
