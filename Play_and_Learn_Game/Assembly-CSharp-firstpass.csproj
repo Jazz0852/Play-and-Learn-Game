@@ -61,6 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Standard Assets\Characters\Akishaqs\Characters\Liam v1\Demo\DemoStuff\Rotate.cs" />
+    <Compile Include="Assets\Standard Assets\Characters\Akishaqs\Characters\Liam v2\Demo v2\DemoStuff\Customizable.cs" />
+    <Compile Include="Assets\Standard Assets\Characters\Akishaqs\Characters\Liam v2\Demo v2\DemoStuff\DragToRotate.cs" />
     <Compile Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
     <Compile Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
@@ -99,6 +102,7 @@
     <Compile Include="Assets\Standard Assets\Utility\TimedObjectDestructor.cs" />
     <Compile Include="Assets\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\Standard Assets\Utility\WaypointProgressTracker.cs" />
+    <None Include="Assets\Standard Assets\Characters\Akishaqs\Characters\Liam v2\Demo v2\DemoStuff\Raleway\OFL.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <Reference Include="UnityEditor.StandardEvents">

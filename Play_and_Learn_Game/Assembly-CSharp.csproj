@@ -61,9 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Akishaqs\Characters\Liam v1\Demo\DemoStuff\Rotate.cs" />
-    <Compile Include="Assets\Akishaqs\Characters\Liam v2\Demo v2\DemoStuff\Customizable.cs" />
-    <Compile Include="Assets\Akishaqs\Characters\Liam v2\Demo v2\DemoStuff\DragToRotate.cs" />
     <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\LongClickButton.cs" />
     <Compile Include="Assets\MovebyTouch.cs" />
@@ -73,7 +70,6 @@
     <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
-    <None Include="Assets\Akishaqs\Characters\Liam v2\Demo v2\DemoStuff\Raleway\OFL.txt" />
     <None Include="Assets\S_Skybox.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/20167649/Documents/Repos/Play-and-Learn-Game/Play_and_Learn_Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
