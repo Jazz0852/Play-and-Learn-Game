@@ -12,12 +12,16 @@ public class GeneralFunctionsScript : MonoBehaviour {
         //select actions based on the object we point at
         switch (recipient.gameObject.tag)
         {
-            case "Buildings":
+            case "Building":
                 //create sign using the building object
                 CreateSignFromBuilding(recipient);
                 break;
 
-            case "Ground":
+            case "Road":
+                //create the sign on the point where we hit the map
+                CreateSignOnGround(recipient, position);
+                break;
+            case "Grass":
                 //create the sign on the point where we hit the map
                 CreateSignOnGround(recipient, position);
                 break;
@@ -28,8 +32,14 @@ public class GeneralFunctionsScript : MonoBehaviour {
     {
         //TODO adjust this function to position the sign properly
         Debug.Log("Create sign through house");
-        Vector3 signPosition = recipient.gameObject.transform.position;
-        signPosition.y += recipient.gameObject.transform.localScale.y / 2;
+        var buildingCollider = recipient.GetComponent<BoxCollider>();
+
+        Vector3 signPosition = new Vector3(
+            recipient.gameObject.transform.position.x,
+            buildingCollider.center.y + buildingCollider.size.y / 2,
+            buildingCollider.gameObject.transform.position.z
+        );
+
         var signClone = Instantiate(sign, signPosition, Quaternion.Euler(new Vector3(0, 0, 0))) as GameObject;
     }
 
@@ -46,5 +56,13 @@ public class GeneralFunctionsScript : MonoBehaviour {
         {
             Destroy(sign);
         }
+    }
+
+    public void CameraMoveToPlayer(Camera camera, GameObject player)
+    {
+        camera.gameObject.transform.SetParent(player.gameObject.transform);
+        var playerScript = player.GetComponent<PlayerScript>();
+        camera.transform.position = player.transform.position + playerScript.cameraPositionOnPlayer;
+        camera.transform.rotation = Quaternion.Euler(playerScript.cameraRotationOnPlayer);
     }
 }

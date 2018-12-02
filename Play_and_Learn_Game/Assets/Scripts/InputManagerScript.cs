@@ -12,10 +12,13 @@ public class InputManagerScript : MonoBehaviour {
 
     //variables bsed on player
     public float playerClickRange = 3f;
-    [SerializeField] GameObject player;
+    public GameObject player;
 
     //create a mask of the things we want to be able to hit with raycasting
     public LayerMask touchInputMask;
+
+
+    public bool mainMenuIsActive = true;
     Camera camera;
     GeneralFunctionsScript generalFunctionsScript;
     
@@ -48,8 +51,6 @@ public class InputManagerScript : MonoBehaviour {
         Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-
-
         //shoot the ray and if it hits something which is in the touchInputMask we apply the if statement
         if (Physics.Raycast(ray, out hit, touchInputMask))
         {
@@ -59,23 +60,35 @@ public class InputManagerScript : MonoBehaviour {
             //if the mouse is pressed
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                //click consequences
-                Vector3 mouseOnScreenPosition = new Vector3(0, 0, 0);
-                if (hitObject.gameObject.tag == "Buildings")
-                {
-                    mouseOnScreenPosition = camera.WorldToScreenPoint(hitObject.transform.position);
-                }
-                else
-                {
-                    mouseOnScreenPosition = camera.WorldToScreenPoint(hit.point);
-                }
-                Vector3 mouseOnWorldPosition = hit.point;
-                //check if the click is in range for the player
-                if (Vector3.Distance(hit.point, player.gameObject.transform.position) <= playerClickRange) {
-                    CallFloatingMenu(hitObject, mouseOnScreenPosition, mouseOnWorldPosition);
+                //check if we are not in the menu
+                if (mainMenuIsActive == false) {
+                    //click consequences
+                    Vector3 mouseOnScreenPosition = ReturnMousePos(ref hit, hitObject);
+                    Vector3 mouseOnWorldPosition = hit.point;
+                    //check if the click is in range for the player
+                    if (Vector3.Distance(hit.point, player.gameObject.transform.position) <= playerClickRange)
+                    {
+                        CallFloatingMenu(hitObject, mouseOnScreenPosition, mouseOnWorldPosition);
+                    }
                 }
             }
         }
+    }
+
+    private Vector3 ReturnMousePos(ref RaycastHit hit, GameObject hitObject)
+    {
+        Vector3 mouseOnScreenPosition;
+
+        if (hitObject.gameObject.tag == "Building")
+        {
+            mouseOnScreenPosition = camera.WorldToScreenPoint(hitObject.transform.position);
+        }
+        else
+        {
+            mouseOnScreenPosition = camera.WorldToScreenPoint(hit.point);
+        }
+
+        return mouseOnScreenPosition;
     }
 
     private void ApplyFingerRaycast()
