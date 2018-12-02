@@ -12,10 +12,13 @@ public class InputManagerScript : MonoBehaviour {
 
     //variables bsed on player
     public float playerClickRange = 3f;
-    [SerializeField] GameObject player;
+    public GameObject player;
 
     //create a mask of the things we want to be able to hit with raycasting
     public LayerMask touchInputMask;
+
+
+    public bool mainMenuIsActive = true;
     Camera camera;
     GeneralFunctionsScript generalFunctionsScript;
     
@@ -57,13 +60,16 @@ public class InputManagerScript : MonoBehaviour {
             //if the mouse is pressed
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                //click consequences
-                Vector3 mouseOnScreenPosition = ReturnMousePos(ref hit, hitObject);
-                Vector3 mouseOnWorldPosition = hit.point;
-                //check if the click is in range for the player
-                if (Vector3.Distance(hit.point, player.gameObject.transform.position) <= playerClickRange)
-                {
-                    CallFloatingMenu(hitObject, mouseOnScreenPosition, mouseOnWorldPosition);
+                //check if we are not in the menu
+                if (mainMenuIsActive == false) {
+                    //click consequences
+                    Vector3 mouseOnScreenPosition = ReturnMousePos(ref hit, hitObject);
+                    Vector3 mouseOnWorldPosition = hit.point;
+                    //check if the click is in range for the player
+                    if (Vector3.Distance(hit.point, player.gameObject.transform.position) <= playerClickRange)
+                    {
+                        CallFloatingMenu(hitObject, mouseOnScreenPosition, mouseOnWorldPosition);
+                    }
                 }
             }
         }

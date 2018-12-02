@@ -57,4 +57,12 @@ public class GeneralFunctionsScript : MonoBehaviour {
             Destroy(sign);
         }
     }
+
+    public void CameraMoveToPlayer(Camera camera, GameObject player)
+    {
+        camera.gameObject.transform.SetParent(player.gameObject.transform);
+        var playerScript = player.GetComponent<PlayerScript>();
+        camera.transform.position = player.transform.position + playerScript.cameraPositionOnPlayer;
+        camera.transform.rotation = Quaternion.Euler(playerScript.cameraRotationOnPlayer);
+    }
 }
