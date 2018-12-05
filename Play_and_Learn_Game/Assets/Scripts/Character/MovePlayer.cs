@@ -8,6 +8,7 @@ public class MovePlayer : MonoBehaviour
     Animator animLiam;
     float speed = 10.0f;
     Rigidbody playerRB;
+    public Joystick joystick;
 
 
     // Use this for initialization
