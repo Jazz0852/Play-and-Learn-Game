@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BuildingScript.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
-    <Compile Include="Assets\Scripts\Character\MovebyTouch.cs" />
+    <Compile Include="Assets\Scripts\Character\CameraController.cs" />
     <Compile Include="Assets\Scripts\Character\MovePlayer.cs" />
     <Compile Include="Assets\Scripts\FloatingMenuScript.cs" />
     <Compile Include="Assets\Scripts\GeneralFunctionsScript.cs" />
