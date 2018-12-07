@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class FixedJoystick : Joystick
 {
-    Vector2 joystickPosition = Vector2.zero;
+    public Vector2 joystickPosition = Vector2.zero;
     private Camera cam = new Camera();
 
     void Start()
@@ -26,7 +26,7 @@ public class FixedJoystick : Joystick
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        inputVector = Vector2.zero;
-        handle.anchoredPosition = Vector2.zero;
+       Vector2 inputVector = Vector2.zero;
+       handle.anchoredPosition = Vector2.zero;
     }
 }

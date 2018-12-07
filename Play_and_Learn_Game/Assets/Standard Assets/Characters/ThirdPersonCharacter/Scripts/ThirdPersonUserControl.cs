@@ -4,18 +4,21 @@ using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-    [RequireComponent(typeof (ThirdPersonCharacter))]
+    [RequireComponent(typeof(ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
-        private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
+        [HideInInspector]
+        public bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
+        [HideInInspector]
+        public float Hinput;
+        [HideInInspector]
+        public float Vinput;
 
-        float h;
-        float v;
-        
+
         private void Start()
         {
             // get the transform of the main camera
@@ -45,27 +48,27 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         public void ForwardButton()
         {
-            v = 1;
+            Vinput = 1;
         }
         public void BackwardButton()
         {
-            v = -1;
+            Vinput = -1;
         }
         public void RightButton()
         {
-            h = 1;
+            Hinput = 1;
         }
         public void LeftButton()
         {
-            h = -1;
+            Hinput = -1;
         }
         public void StopForwardAndBackward()
         {
-            v = 0;
+            Vinput = 0;
         }
         public void StopRightAndLeft()
         {
-            h = 0;
+            Hinput = 0;
         }
 
         // Fixed update is called in sync with physics
@@ -74,7 +77,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // read inputs
             //float h = CrossPlatformInputManager.GetAxis("Horizontal");
             //float v = CrossPlatformInputManager.GetAxis("Vertical");
-            Debug.Log(h + " + " + v);
+            Debug.Log(Hinput + " + " + Vinput);
             bool crouch = Input.GetKey(KeyCode.C);
 
             // calculate move direction to pass to character
@@ -82,14 +85,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 // calculate camera relative direction to move:
                 m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                m_Move = v*m_CamForward + h*m_Cam.right;
+                m_Move = Vinput * m_CamForward + Hinput * m_Cam.right;
                 //h = 0;
                 //v = 0;
             }
             else
             {
                 // we use world-relative directions in the case of no main camera
-                m_Move = v*Vector3.forward + h*Vector3.right;
+                m_Move = Vinput * Vector3.forward + Hinput * Vector3.right;
                 //h = 0;
                 //v = 0;
             }

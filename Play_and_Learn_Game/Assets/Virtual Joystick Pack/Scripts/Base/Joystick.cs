@@ -7,7 +7,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     [Range(0f, 2f)] public float handleLimit = 1f;
     public JoystickMode joystickMode = JoystickMode.AllAxis;
 
-    protected Vector2 inputVector = Vector2.zero;
+    public Vector2 inputVector = Vector2.zero;
 
     [Header("Components")]
     public RectTransform background;
