@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class MainMenuScript : MonoBehaviour {
 
+    [SerializeField] GameObject loginMenu;
+    [SerializeField] GameObject teamMenu;
+    [SerializeField] GameObject presentYourselfMenu;
+    [SerializeField] GameObject ambitionMenu;
+    [SerializeField] GameObject startMenu;
+
     float rotationVariable = 0;
     [SerializeField] Camera camera;
     [SerializeField] GameObject player;
     [SerializeField] float cameraRotationSpeed = 0.5f;
-
+    MeshRenderer playerMesh;
     private void Start()
     {
         camera = Camera.FindObjectOfType<Camera>();
         player = GameObject.Find("Player");
-        player.gameObject.SetActive(false);
+        playerMesh = player.gameObject.GetComponentInChildren<MeshRenderer>();
+        playerMesh.gameObject.SetActive(false);
         camera.gameObject.transform.SetParent(this.transform);
     }
 
@@ -45,14 +52,15 @@ public class MainMenuScript : MonoBehaviour {
 
     private void SetActiveThePlayer()
     {
-        player.gameObject.SetActive(true);
+        playerMesh.gameObject.SetActive(true);
     }
 
     private void StartCameraMovement()
     {
         var generalFunctions = GameObject.Find("General Functions");
         var generalFunctionsScript = generalFunctions.GetComponent<GeneralFunctionsScript>();
-        generalFunctionsScript.CameraMoveToPlayer(camera, player);
+        generalFunctionsScript.startCameraMovement = true;
+        generalFunctionsScript.StartCameraMovement(camera, player, gameObject);
     }
 
     private void EnablePlayer()
@@ -70,4 +78,42 @@ public class MainMenuScript : MonoBehaviour {
         inputManagerScript.mainMenuIsActive = false;
     }
 
+    void SetMenusUnActive()
+    {
+        loginMenu.gameObject.SetActive(false);
+        teamMenu.gameObject.SetActive(false);
+        presentYourselfMenu.gameObject.SetActive(false);
+        ambitionMenu.gameObject.SetActive(false);
+        startMenu.gameObject.SetActive(false);
+    }
+
+    public void GoToLoginMenu()
+    {
+        SetMenusUnActive();
+        loginMenu.gameObject.SetActive(true);
+    }
+
+    public void GoToTeamMenu()
+    {
+        SetMenusUnActive();
+        teamMenu.gameObject.SetActive(true);
+    }
+
+    public void GoToPresentYourselfMenu()
+    {
+        SetMenusUnActive();
+        presentYourselfMenu.gameObject.SetActive(true);
+    }
+
+    public void GoToAmbitionMenu()
+    {
+        SetMenusUnActive();
+        ambitionMenu.gameObject.SetActive(true);
+    }
+
+    public void GoToStartMenu()
+    {
+        SetMenusUnActive();
+        startMenu.gameObject.SetActive(true);
+    }
 }

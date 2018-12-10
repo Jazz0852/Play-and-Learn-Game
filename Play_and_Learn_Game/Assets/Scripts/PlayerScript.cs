@@ -25,10 +25,5 @@ public class PlayerScript : MonoBehaviour {
             newPosition.z += Input.GetAxis("Horizontal") * Time.deltaTime * speed;
             transform.position = newPosition;
         }
-
-        var generalFunctions = GameObject.Find("General Functions");
-        var camera = Camera.FindObjectOfType<Camera>();
-        var generalFunctionsScript = generalFunctions.GetComponent<GeneralFunctionsScript>();
-        generalFunctionsScript.CameraMoveToPlayer(camera, gameObject);
     }
 }
