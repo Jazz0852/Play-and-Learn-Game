@@ -65,11 +65,8 @@
     <Compile Include="Assets\OwnThirdPersonControl.cs" />
     <Compile Include="Assets\Scripts\BuildingScript.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
-    <Compile Include="Assets\Scripts\Character\Actions.cs" />
     <Compile Include="Assets\Scripts\Character\CameraController.cs" />
     <Compile Include="Assets\Scripts\Character\MovePlayer.cs" />
-    <Compile Include="Assets\Scripts\Character\OwnThirdPersonController.cs" />
-    <Compile Include="Assets\Scripts\Character\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Character\ThirdPersonInput.cs" />
     <Compile Include="Assets\Scripts\Character\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\Scripts\FixedTouchField.cs" />
