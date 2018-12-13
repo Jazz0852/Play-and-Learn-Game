@@ -6,7 +6,8 @@ public class MovePlayer : MonoBehaviour
 {
 
     Animator animLiam;
-    float speed = 10.0f;
+    float speed = 5f;
+    float stopspeed = 0f;
     Rigidbody playerRB;
     public Joystick joystick;
 
@@ -24,10 +25,38 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical);
+        Vector3 stopVector = Vector3.zero;
 
-        //Walk Animation Liam
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow)
-             || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (moveVector != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(moveVector);
+            transform.Translate(moveVector * speed * Time.deltaTime, Space.World);
+        }
+
+        if (moveVector != Vector3.zero)
+        {
+            //Animate Walk
+            animLiam.SetBool("Walk", true);
+            animLiam.SetBool("Stop", false);
+        }
+
+        //Stop Liam Animation
+        if (moveVector == Vector3.zero)
+        {
+            animLiam.SetBool("Walk", false);
+            animLiam.SetBool("Stop", true);
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(stopVector * stopspeed * Time.deltaTime, Space.World);
+            animLiam.SetBool("Walk", false);
+            animLiam.SetBool("Stop", true);
+        }
+       
+        /*//Walk Animation Liam
+        if (joystick.Horizontal > 0 || joystick.Horizontal < 0 || joystick.Vertical > 0 || joystick.Vertical < 0)
         {
             //Animate Walk
             animLiam.SetBool("Walk", true);
@@ -36,23 +65,41 @@ public class MovePlayer : MonoBehaviour
         }
 
         //Stop Liam Animation
-        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.LeftArrow)
-             || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+        if (joystick.Horizontal == 0 && joystick.Vertical == 0)
         {
             animLiam.SetBool("Walk", false);
             animLiam.SetBool("Stop", true);
-        }
+        } */
+
+        /* //Walk Animation Liam
+         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow)
+              || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+         {
+             //Animate Walk
+             animLiam.SetBool("Walk", true);
+             animLiam.SetBool("Stop", false);
+
+         }
+
+         //Stop Liam Animation
+         if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.LeftArrow)
+              || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+         {
+             animLiam.SetBool("Walk", false);
+             animLiam.SetBool("Stop", true);
+         } */
 
 
 
     }
+}
 
-    void FixedUpdate()
-    {
+    //void FixedUpdate()
+   /* {
         //Move Code
 
         //Move Player Forward
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (joystick.Vertical > 0)
         {
             playerRB.AddForce(new Vector3(0, 0, 5), ForceMode.VelocityChange);
 
@@ -60,7 +107,7 @@ public class MovePlayer : MonoBehaviour
         }
 
         //Move Player Back
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (joystick.Vertical < 0)
         {
             playerRB.AddForce(new Vector3(0, 0, -5), ForceMode.VelocityChange);
 
@@ -69,7 +116,7 @@ public class MovePlayer : MonoBehaviour
         }
 
         //Move Player Left
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (joystick.Horizontal < 0)
         {
             //Move Player
             playerRB.AddForce(new Vector3(-5, 0, 0), ForceMode.VelocityChange);
@@ -78,7 +125,7 @@ public class MovePlayer : MonoBehaviour
         }
 
         //Move Player Right
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (joystick.Horizontal > 0)
         {
             //Move Player
             playerRB.AddForce(new Vector3(5, 0, 0), ForceMode.VelocityChange);
@@ -86,4 +133,41 @@ public class MovePlayer : MonoBehaviour
             playerRB.rotation = Quaternion.LookRotation(Vector3.right);
         }
     }
-}
+} */
+            /*//Move Code
+
+            //Move Player Forward
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                playerRB.AddForce(new Vector3(0, 0, 5), ForceMode.VelocityChange);
+
+                playerRB.rotation = Quaternion.LookRotation(Vector3.forward);
+            }
+
+            //Move Player Back
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                playerRB.AddForce(new Vector3(0, 0, -5), ForceMode.VelocityChange);
+
+                playerRB.rotation = Quaternion.LookRotation(Vector3.back);
+
+            }
+
+            //Move Player Left
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                //Move Player
+                playerRB.AddForce(new Vector3(-5, 0, 0), ForceMode.VelocityChange);
+
+                playerRB.rotation = Quaternion.LookRotation(Vector3.left);
+            }
+
+            //Move Player Right
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                //Move Player
+                playerRB.AddForce(new Vector3(5, 0, 0), ForceMode.VelocityChange);
+
+                playerRB.rotation = Quaternion.LookRotation(Vector3.right);
+            }*/
+//}
