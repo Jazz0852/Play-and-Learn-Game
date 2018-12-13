@@ -65,10 +65,10 @@
     <Compile Include="Assets\OwnThirdPersonControl.cs" />
     <Compile Include="Assets\Scripts\BuildingScript.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\Character\CameraController.cs" />
     <Compile Include="Assets\Scripts\Character\MovePlayer.cs" />
-    <Compile Include="Assets\Scripts\Character\NOt used\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Character\NOt used\ThirdPersonInput.cs" />
-    <Compile Include="Assets\Scripts\Character\NOt used\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\Scripts\Character\ThirdPersonInput.cs" />
+    <Compile Include="Assets\Scripts\Character\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\Scripts\FixedTouchField.cs" />
     <Compile Include="Assets\Scripts\FloatingMenuScript.cs" />
     <Compile Include="Assets\Scripts\GeneralFunctionsScript.cs" />
