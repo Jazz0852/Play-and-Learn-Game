@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class MovePlayer : MonoBehaviour
     float speed = 10.0f;
     Rigidbody playerRB;
     public Joystick joystick;
-
+    public float Hinput;
+    public float Vinput;
 
     // Use this for initialization
     void Start()
@@ -18,13 +20,33 @@ public class MovePlayer : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
 
         animLiam = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Read Input
+        float Hinput = Input.GetAxis("Hinput");
+        float Vinput = Input.GetAxis("Vinput");
 
+        //Walk Animation Liam
+        if (Hinput != 0 && Vinput != 0)
+        {
+            //Animate Walk
+            animLiam.SetBool("Walk", true);
+            animLiam.SetBool("Stop", false);
+
+        }
+
+        //Stop Liam Animation
+        if (Hinput == 0 && Vinput == 0)
+        {
+            animLiam.SetBool("Walk", false);
+            animLiam.SetBool("Stop", true);
+        }
+
+        /* 
+        //Animation with Buttons
         //Walk Animation Liam
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow)
              || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
@@ -41,15 +63,47 @@ public class MovePlayer : MonoBehaviour
         {
             animLiam.SetBool("Walk", false);
             animLiam.SetBool("Stop", true);
-        }
-
-
-
+        }    
+        */
     }
 
     void FixedUpdate()
     {
-        //Move Code
+        //Move code
+
+        //Move player forwards
+        if (Hinput > 0)
+        {
+            playerRB.AddForce(new Vector3(0, 0, 5), ForceMode.VelocityChange);
+
+            playerRB.rotation = Quaternion.LookRotation(Vector3.forward);
+        }
+
+        //Move player backwards
+        if (Hinput < 0)
+        {
+            playerRB.AddForce(new Vector3(0, 0, -5), ForceMode.VelocityChange);
+
+            playerRB.rotation = Quaternion.LookRotation(Vector3.back);
+        }
+
+        //Move player left
+        if (Vinput < 0)
+        {
+            playerRB.AddForce(new Vector3(-5, 0, 0), ForceMode.VelocityChange);
+
+            playerRB.rotation = Quaternion.LookRotation(Vector3.left);
+        }
+
+        //Move player right
+        if (Vinput > 0)
+        {
+            playerRB.AddForce(new Vector3(5, 0, 0), ForceMode.VelocityChange);
+
+            playerRB.rotation = Quaternion.LookRotation(Vector3.right);
+        }
+
+        /*//Move Code with Buttons
 
         //Move Player Forward
         if (Input.GetKey(KeyCode.UpArrow))
@@ -84,6 +138,9 @@ public class MovePlayer : MonoBehaviour
             playerRB.AddForce(new Vector3(5, 0, 0), ForceMode.VelocityChange);
 
             playerRB.rotation = Quaternion.LookRotation(Vector3.right);
-        }
+
+            //Control.Hinput = LeftJoystick.inputVector.x;
+            //Control.Vinput = LeftJoystick.inputVector.y;
+        } */
     }
 }
